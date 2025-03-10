@@ -7,4 +7,4 @@ Windows系统的ACL查看工具
 
 # 截图
 
-![ACLViewer](https://github.com/user-attachments/assets/671993d5-bfb2-4735-a5a6-2a5915b77967)
+![ACLViewer](https://raw.githubusercontent.com/sorabug/ACLViewer/34bf7f81238d2a6eff0bf13c84797ab2c4ec687f/img/UI.png)
