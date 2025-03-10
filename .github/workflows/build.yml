@@ -61,7 +61,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: ${{ inputs.release }}
         with:
-          draft: true
+          draft: false
           name: ACLViewer ${{ inputs.version }}
           tag_name: ${{ inputs.version }}
           files: |
