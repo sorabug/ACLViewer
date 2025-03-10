@@ -158,7 +158,7 @@ If @error Then ConsoleWrite("__TreeListExplorer_StartUp failed: "&@error&":"&@ex
 
 ;Create GUI
 ;$hGUI_1 = GUICreate("ACL Viewer", @DesktopWidth - 100, @DesktopHeight - 140, -1, -1, BitOR($WS_OVERLAPPEDWINDOW, $WS_MAXIMIZE))
-$hGUI_1 = GUICreate("ACL Viewer", @DesktopWidth - 100, @DesktopHeight - 140, -1, -1, $WS_OVERLAPPEDWINDOW)
+$hGUI_1 = GUICreate("ACL查看器", @DesktopWidth - 100, @DesktopHeight - 140, -1, -1, $WS_OVERLAPPEDWINDOW)
 ;$hGUI_1 = GUICreate("ACL Viewer", 800, 600, 100, 100, BitOR($WS_MAXIMIZEBOX, $WS_MAXIMIZE))
 ;GUISetOnEvent($GUI_EVENT_CLOSE, "SpecialEvents")
 $FrameWidth1 = @DesktopWidth / 4
@@ -256,7 +256,7 @@ $ownerLabelHeight = $aPos[3]
 $ownerLabelWidth = $aPos[2]
 
 
-$ownerLabelName = GUICtrlCreateLabel("Object Name:" & @CRLF & "Owner Name:", 80, $ownerLabelPosV2 + 2, -1)
+$ownerLabelName = GUICtrlCreateLabel("对象名称:" & @CRLF & "所有者名称:", 80, $ownerLabelPosV2 + 2, -1)
 $hownerLabelName = GUICtrlGetHandle($ownerLabelName)
 $aPos = ControlGetPos($hGUI_1, "", $ownerLabelName)
 ;MsgBox($MB_SYSTEMMODAL, "", "Position: " & $aPos[0] & ", " & $aPos[1] & @CRLF & "Size: " & $aPos[2] & ", " & $aPos[3])
@@ -280,7 +280,7 @@ GUISetFont(10.5,  $FW_NORMAL, 0, $MainFont)
 
 
 ;$cListView = GUICtrlCreateListView("Type|Name|Access|Inherited|Applies to|Access Mask", 10, $ownerLabelPosV + 10, 2000, @DesktopHeight / 2.8, $LVS_SINGLESEL)
-$cListView = GUICtrlCreateListView("Type|Principal|Access|Inherited|Applies to|Propagate|ACCESS_MASK", 10, $ownerLabelPosV + 14, $aWinSize2[0] - 20, $aWinSize2[1] / 2.5, $LVS_SINGLESEL)
+$cListView = GUICtrlCreateListView("类型|主体|访问权限|继承|应用于|传播|访问掩码", 10, $ownerLabelPosV + 14, $aWinSize2[0] - 20, $aWinSize2[1] / 2.5, $LVS_SINGLESEL)
 $exStyles = BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER)
 $hListView = GUICtrlGetHandle($cListView)
 $aPos = ControlGetPos($hGUI_1, "", $cListView)
@@ -298,12 +298,12 @@ GUISetFont(14, $FW_NORMAL, $GUI_FONTITALIC, $MainFont)
 $OutputText = GUICtrlCreateEdit("", 100, $cListViewPosV + 20, 800, $aWinSize2[1] / 2, BitOr($ES_AUTOVSCROLL, $WS_VSCROLL), 0)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
 
-$selectACE = GUICtrlCreateLabel("Select an ACE", 100, $cListViewPosV + 30)
+$selectACE = GUICtrlCreateLabel("选择一个访问控制条目", 100, $cListViewPosV + 30)
 GUICtrlSetResizing(-1, $GUI_DOCKALL)
 ;GUICtrlSetState($selectACE, $GUI_HIDE)
 
 GUISetFont(16, $FW_NORMAL, $GUI_FONTNORMAL, $MainFont)
-$ErrorAce = GUICtrlCreateLabel("Error", 100, $cListViewPosV + 30, 300)
+$ErrorAce = GUICtrlCreateLabel("错误", 100, $cListViewPosV + 30, 300)
 GUICtrlSetState($ErrorAce, $GUI_HIDE)
 
 GUISetFont(10.5,  $FW_NORMAL, 0, $MainFont)
@@ -328,7 +328,7 @@ $AccessInfoLabelWidth = $aPos[2]
 GUICtrlSetState($AccessInfoLabel, $GUI_HIDE)
 
 
-$AccessInfoName = GUICtrlCreateLabel('Type:' & @CRLF & 'Principal:' & @CRLF & 'Applies to:', 80, $AccessInfoLabelPosV2 + 2, -1, -1)
+$AccessInfoName = GUICtrlCreateLabel('类型:' & @CRLF & '主体:' & @CRLF & '应用于:', 80, $AccessInfoLabelPosV2 + 2, -1, -1)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
 $aPos = ControlGetPos($hGUI_1, "", $AccessInfoName)
 ;MsgBox($MB_SYSTEMMODAL, "", "Position: " & $aPos[0] & ", " & $aPos[1] & @CRLF & "Size: " & $aPos[2] & ", " & $aPos[3])
@@ -369,13 +369,13 @@ $ListviewMeasureWidth = $aPos[2]
 $idListview = GUICtrlCreateListView("col1", 100, $AccessInfoLabelPosV + 30, $ListviewMeasureWidth + 20, 400, $LVS_NOCOLUMNHEADER, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_CHECKBOXES, $LVS_EX_DOUBLEBUFFER))
 _GUICtrlListView_SetView($idListview, 3)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
-$sFILE_ALL_ACCESS = GUICtrlCreateListViewItem(" Full Control", $idListview)
-$sFILE_EXECUTE = GUICtrlCreateListViewItem(" Traverse Folder / Execute File", $idListview)
-$sFILE_READ_DATA = GUICtrlCreateListViewItem(" List Folder / Read Data", $idListview)
-$sFILE_READ_ATTRIBUTES = GUICtrlCreateListViewItem(" Read Attributes", $idListview)
-$sFILE_READ_EA = GUICtrlCreateListViewItem(" Read Extended Attributes", $idListview)
-$sFILE_WRITE_DATA = GUICtrlCreateListViewItem(" Create Files / Write Data", $idListview)
-$sFILE_APPEND_DATA = GUICtrlCreateListViewItem(" Create Folders / Append Data", $idListview)
+$sFILE_ALL_ACCESS = GUICtrlCreateListViewItem(" 完全控制", $idListview)
+$sFILE_EXECUTE = GUICtrlCreateListViewItem(" 遍历文件夹 / 执行文件", $idListview)
+$sFILE_READ_DATA = GUICtrlCreateListViewItem(" 列出文件夹内容 / 读取数据", $idListview)
+$sFILE_READ_ATTRIBUTES = GUICtrlCreateListViewItem(" 读取属性", $idListview)
+$sFILE_READ_EA = GUICtrlCreateListViewItem(" 读取扩展属性", $idListview)
+$sFILE_WRITE_DATA = GUICtrlCreateListViewItem(" 创建文件 / 写入数据", $idListview)
+$sFILE_APPEND_DATA = GUICtrlCreateListViewItem(" 创建文件夹 / 追加数据", $idListview)
 
 $aPos = ControlGetPos($hGUI_1, "", $idListview)
 ;MsgBox($MB_SYSTEMMODAL, "", "Position: " & $aPos[0] & ", " & $aPos[1] & @CRLF & "Size: " & $aPos[2] & ", " & $aPos[3])
@@ -392,13 +392,13 @@ GUICtrlSetState($idListview, $GUI_HIDE)
 $idListview2 = GUICtrlCreateListView("col1", 100 + $idListviewWidth + 40, $AccessInfoLabelPosV + 30, $ListviewMeasureWidth + 20, 400, $LVS_NOCOLUMNHEADER, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_CHECKBOXES, $LVS_EX_DOUBLEBUFFER))
 _GUICtrlListView_SetView($idListview2, 3)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
-$sFILE_WRITE_ATTRIBUTES = GUICtrlCreateListViewItem(" Write Attributes", $idListview2)
-$sFILE_WRITE_EA = GUICtrlCreateListViewItem(" Write Extended Attributes", $idListview2)
-$sFILE_DELETE_CHILD = GUICtrlCreateListViewItem(" Delete Subfolders and Files", $idListview2)
-$sFILE_DELETE = GUICtrlCreateListViewItem(" Delete", $idListview2)
-$sREAD_CONTROL = GUICtrlCreateListViewItem(" Read Permissions", $idListview2)
-$sWRITE_DAC = GUICtrlCreateListViewItem(" Change Permissions", $idListview2)
-$sWRITE_OWNER = GUICtrlCreateListViewItem(" Take Ownership", $idListview2)
+$sFILE_WRITE_ATTRIBUTES = GUICtrlCreateListViewItem(" 写入属性", $idListview2)
+$sFILE_WRITE_EA = GUICtrlCreateListViewItem(" 写入扩展属性", $idListview2)
+$sFILE_DELETE_CHILD = GUICtrlCreateListViewItem(" 删除子文件夹和文件", $idListview2)
+$sFILE_DELETE = GUICtrlCreateListViewItem(" 删除", $idListview2)
+$sREAD_CONTROL = GUICtrlCreateListViewItem(" 读取权限", $idListview2)
+$sWRITE_DAC = GUICtrlCreateListViewItem(" 更改权限", $idListview2)
+$sWRITE_OWNER = GUICtrlCreateListViewItem(" 取得所有权", $idListview2)
 
 _GUICtrlListView_SetColumnWidth($idListview2, 0, $LVSCW_AUTOSIZE_USEHEADER)
 GUICtrlSetState($idListview2, $GUI_HIDE)
@@ -407,7 +407,7 @@ GUICtrlSetState($idListview2, $GUI_HIDE)
 $idListview3 = GUICtrlCreateListView("col1", 100 + $idListviewWidth + 40 + $idListviewWidth + 40, $AccessInfoLabelPosV + 30, $ListviewMeasureWidth + 20, 400, $LVS_NOCOLUMNHEADER, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_CHECKBOXES, $LVS_EX_DOUBLEBUFFER))
 _GUICtrlListView_SetView($idListview3, 3)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
-$IsPropagated = GUICtrlCreateListViewItem(" Propagate to child objects", $idListview3)
+$IsPropagated = GUICtrlCreateListViewItem(" 传播到子对象", $idListview3)
 
 _GUICtrlListView_SetColumnWidth($idListview3, 0, $LVSCW_AUTOSIZE_USEHEADER)
 GUICtrlSetState($idListview3, $GUI_HIDE)
@@ -417,13 +417,13 @@ GUICtrlSetState($idListview3, $GUI_HIDE)
 $idListviewfile = GUICtrlCreateListView("col1", 100, $AccessInfoLabelPosV + 30, $ListviewMeasureWidth + 20, 400, $LVS_NOCOLUMNHEADER, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_CHECKBOXES, $LVS_EX_DOUBLEBUFFER))
 _GUICtrlListView_SetView($idListviewfile, 3)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
-$sFILE_ALL_ACCESSfile = GUICtrlCreateListViewItem(" Full Control", $idListviewfile)
-$sFILE_EXECUTEfile = GUICtrlCreateListViewItem(" Traverse Folder / Execute File", $idListviewfile)
-$sFILE_READ_DATAfile = GUICtrlCreateListViewItem(" List Folder / Read Data", $idListviewfile)
-$sFILE_READ_ATTRIBUTESfile = GUICtrlCreateListViewItem(" Read Attributes", $idListviewfile)
-$sFILE_READ_EAfile = GUICtrlCreateListViewItem(" Read Extended Attributes", $idListviewfile)
-$sFILE_WRITE_DATAfile = GUICtrlCreateListViewItem(" Create Files / Write Data", $idListviewfile)
-$sFILE_APPEND_DATAfile = GUICtrlCreateListViewItem(" Create Folders / Append Data", $idListviewfile)
+$sFILE_ALL_ACCESSfile = GUICtrlCreateListViewItem(" 完全控制", $idListviewfile)
+$sFILE_EXECUTEfile = GUICtrlCreateListViewItem(" 遍历文件夹 / 执行文件", $idListviewfile)
+$sFILE_READ_DATAfile = GUICtrlCreateListViewItem(" 列出文件夹内容 / 读取数据", $idListviewfile)
+$sFILE_READ_ATTRIBUTESfile = GUICtrlCreateListViewItem(" 读取属性", $idListviewfile)
+$sFILE_READ_EAfile = GUICtrlCreateListViewItem(" 读取扩展属性", $idListviewfile)
+$sFILE_WRITE_DATAfile = GUICtrlCreateListViewItem(" 创建文件 / 写入数据", $idListviewfile)
+$sFILE_APPEND_DATAfile = GUICtrlCreateListViewItem(" 创建文件夹 / 追加数据", $idListviewfile)
 
 $aPos = ControlGetPos($hGUI_1, "", $idListviewfile)
 ;MsgBox($MB_SYSTEMMODAL, "", "Position: " & $aPos[0] & ", " & $aPos[1] & @CRLF & "Size: " & $aPos[2] & ", " & $aPos[3])
@@ -440,13 +440,13 @@ GUICtrlSetState($idListviewfile, $GUI_HIDE)
 $idListviewfile2 = GUICtrlCreateListView("col1", 100 + $idListviewfileWidth + 80, $AccessInfoLabelPosV + 30, $ListviewMeasureWidth + 20, 400, $LVS_NOCOLUMNHEADER, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_CHECKBOXES, $LVS_EX_DOUBLEBUFFER))
 _GUICtrlListView_SetView($idListviewfile2, 3)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
-$sFILE_WRITE_ATTRIBUTESfile = GUICtrlCreateListViewItem(" Write Attributes", $idListviewfile2)
-$sFILE_WRITE_EAfile = GUICtrlCreateListViewItem(" Write Extended Attributes", $idListviewfile2)
+$sFILE_WRITE_ATTRIBUTESfile = GUICtrlCreateListViewItem(" 写入属性", $idListviewfile2)
+$sFILE_WRITE_EAfile = GUICtrlCreateListViewItem(" 写入扩展属性", $idListviewfile2)
 ;$sFILE_DELETE_CHILD = GUICtrlCreateListViewItem(" Delete Subfolders and Files", $idListviewfile2)
-$sFILE_DELETEfile = GUICtrlCreateListViewItem(" Delete", $idListviewfile2)
-$sREAD_CONTROLfile = GUICtrlCreateListViewItem(" Read Permissions", $idListviewfile2)
-$sWRITE_DACfile = GUICtrlCreateListViewItem(" Change Permissions", $idListviewfile2)
-$sWRITE_OWNERfile = GUICtrlCreateListViewItem(" Take Ownership", $idListviewfile2)
+$sFILE_DELETEfile = GUICtrlCreateListViewItem(" 删除", $idListviewfile2)
+$sREAD_CONTROLfile = GUICtrlCreateListViewItem(" 读取权限", $idListviewfile2)
+$sWRITE_DACfile = GUICtrlCreateListViewItem(" 更改权限", $idListviewfile2)
+$sWRITE_OWNERfile = GUICtrlCreateListViewItem(" 取得所有权", $idListviewfile2)
 
 _GUICtrlListView_SetColumnWidth($idListviewfile2, 0, $LVSCW_AUTOSIZE_USEHEADER)
 GUICtrlSetState($idListviewfile2, $GUI_HIDE)
@@ -600,7 +600,7 @@ Func CheckFileSystem()
     ElseIf $sFileSystem = 'ReFS' Then
         GetPermissions()
     Else
-        GUICtrlSetData($ownerLabel, @TAB & "Object Name:" & @CRLF & @TAB & "Owner Name:")
+        GUICtrlSetData($ownerLabel, @TAB & "对象名称:" & @CRLF & @TAB & "所有者名称:")
         _GUICtrlListView_DeleteAllItems($cListView)
         ;MsgBox($MB_SYSTEMMODAL, "", "NULL ACL")
         ;GUICtrlSetState($OutputText, $GUI_SHOW)
@@ -611,7 +611,7 @@ Func CheckFileSystem()
         ;Else
         ;    GUICtrlSetFont($OutputText, 20, $FW_NORMAL, -1, "Consolas")
         ;EndIf
-        GUICtrlSetData($ErrorAce, "NULL ACL (full access)")
+        GUICtrlSetData($ErrorAce, "空ACL（完全访问）")
         GUICtrlSetState($ErrorAce, $GUI_SHOW)
         GUICtrlSetState($selectACE, $GUI_HIDE)
         Return
@@ -632,7 +632,7 @@ Func GetPermissions()
     If @error Then GUICtrlSetData($ownerLabelData, $displaySelected & @CRLF & 'Error')
     Global $Dacl = _GetObjectDacl($newItem)
     If @error Then
-        GUICtrlSetData($ErrorAce, "Error")
+        GUICtrlSetData($ErrorAce, "错误")
         GUICtrlSetState($ErrorAce, $GUI_SHOW)
         GUICtrlSetState($selectACE, $GUI_HIDE)
         _GUICtrlListView_SetColumnWidth($hListView, 0, $LVSCW_AUTOSIZE_USEHEADER)
@@ -698,8 +698,8 @@ Func GetPermissions()
             EndIf
         EndIf
         ; parse access type
-        $aOldArray[$i][1] = StringReplace($aOldArray[$i][1], '0', 'Allow ', 0)
-        $aOldArray[$i][1] = StringReplace($aOldArray[$i][1], '1', 'Deny ', 0)
+        $aOldArray[$i][1] = StringReplace($aOldArray[$i][1], '0', '允许 ', 0)
+        $aOldArray[$i][1] = StringReplace($aOldArray[$i][1], '1', '拒绝 ', 0)
 
         ; Parse SIDs
         $aOldArray[$i][0] = StringReplace($aOldArray[$i][0], 'APPLICATION PACKAGE AUTHORITY\', '')
@@ -717,37 +717,37 @@ Func GetPermissions()
         $aOldArray[$i][5] = _NumberToBinary($aOldArray[$i][5])
 
         ; get basic permission from access mask
-        If $aOldArray[$i][5] = '00000000000111110000000111111111' Then $aOldArray[$i][2] = 'Full Control'
-        If $aOldArray[$i][5] = '00010000000000000000000000000000' Then $aOldArray[$i][2] = 'Full Control'
-        If $aOldArray[$i][5] = '10100000000000000000000000000000' Then $aOldArray[$i][2] = 'Read & Execute'
-        If $aOldArray[$i][5] = '00000000000100100000000010101001' Then $aOldArray[$i][2] = 'Read & Execute'
-        If $aOldArray[$i][5] = '00000000000100110000000110111111' Then $aOldArray[$i][2] = 'Modify'
-        If $aOldArray[$i][5] = '11100000000000010000000000000000' Then $aOldArray[$i][2] = 'Modify'
-        If $aOldArray[$i][5] = '00000000000000000000000100010110' Then $aOldArray[$i][2] = 'Write'
-        If $aOldArray[$i][5] = '00000000000100100000000010001001' Then $aOldArray[$i][2] = 'Read'
-        If $aOldArray[$i][5] = '00000000000000000000000000000001' Then $aOldArray[$i][2] = 'List folder contents'
+        If $aOldArray[$i][5] = '00000000000111110000000111111111' Then $aOldArray[$i][2] = '完全控制'
+        If $aOldArray[$i][5] = '00010000000000000000000000000000' Then $aOldArray[$i][2] = '完全控制'
+        If $aOldArray[$i][5] = '10100000000000000000000000000000' Then $aOldArray[$i][2] = '读取和执行'
+        If $aOldArray[$i][5] = '00000000000100100000000010101001' Then $aOldArray[$i][2] = '读取和执行'
+        If $aOldArray[$i][5] = '00000000000100110000000110111111' Then $aOldArray[$i][2] = '修改'
+        If $aOldArray[$i][5] = '11100000000000010000000000000000' Then $aOldArray[$i][2] = '修改'
+        If $aOldArray[$i][5] = '00000000000000000000000100010110' Then $aOldArray[$i][2] = '写入'
+        If $aOldArray[$i][5] = '00000000000100100000000010001001' Then $aOldArray[$i][2] = '读取'
+        If $aOldArray[$i][5] = '00000000000000000000000000000001' Then $aOldArray[$i][2] = '列出文件夹内容'
 
-        If $aOldArray[$i][5] = '00000000000100000000000000100001' Then $aOldArray[$i][2] = 'Special'
-        If $aOldArray[$i][5] = '00000000000100100000000010101111' Then $aOldArray[$i][2] = 'Special'
-        If $aOldArray[$i][5] = '00000000000100100000000110101101' Then $aOldArray[$i][2] = 'Special'
-        If $aOldArray[$i][5] = '00000000000100000000000010100001' Then $aOldArray[$i][2] = 'Special'
-        If $aOldArray[$i][5] = '00000000000100000000000000100000' Then $aOldArray[$i][2] = 'Special'
-        If $aOldArray[$i][5] = '00000000000100110000000111111111' Then $aOldArray[$i][2] = 'Special'
-        If $aOldArray[$i][5] = '00000000000000010000000001000000' Then $aOldArray[$i][2] = 'Special'
+        If $aOldArray[$i][5] = '00000000000100000000000000100001' Then $aOldArray[$i][2] = '特殊'
+        If $aOldArray[$i][5] = '00000000000100100000000010101111' Then $aOldArray[$i][2] = '特殊'
+        If $aOldArray[$i][5] = '00000000000100100000000110101101' Then $aOldArray[$i][2] = '特殊'
+        If $aOldArray[$i][5] = '00000000000100000000000010100001' Then $aOldArray[$i][2] = '特殊'
+        If $aOldArray[$i][5] = '00000000000100000000000000100000' Then $aOldArray[$i][2] = '特殊'
+        If $aOldArray[$i][5] = '00000000000100110000000111111111' Then $aOldArray[$i][2] = '特殊'
+        If $aOldArray[$i][5] = '00000000000000010000000001000000' Then $aOldArray[$i][2] = '特殊'
 ;#cs
         ; parse inheritance flags
-        If $aOldArray[$i][3] = '10' Then $aOldArray[$i][6] = 'True'
-        If $aOldArray[$i][3] = '10' Then $aOldArray[$i][3] = 'This folder and subfolders'
-        If $aOldArray[$i][3] = '11' Then $aOldArray[$i][6] = 'True'
-        If $aOldArray[$i][3] = '11' Then $aOldArray[$i][3] = 'This folder, subfolders and files'
+        If $aOldArray[$i][3] = '10' Then $aOldArray[$i][6] = '是'
+        If $aOldArray[$i][3] = '10' Then $aOldArray[$i][3] = '此文件夹和子文件夹'
+        If $aOldArray[$i][3] = '11' Then $aOldArray[$i][6] = '是'
+        If $aOldArray[$i][3] = '11' Then $aOldArray[$i][3] = '此文件夹、子文件夹和文件'
         If $aOldArray[$i][3] = '19' Then
-            $aOldArray[$i][3] = 'This folder, subfolders and files'
-            $aOldArray[$i][4] = 'True'
-            $aOldArray[$i][6] = 'True'
+            $aOldArray[$i][3] = '此文件夹、子文件夹和文件'
+            $aOldArray[$i][4] = '是'
+            $aOldArray[$i][6] = '是'
         EndIf
         If $aOldArray[$i][3] = '18' Then
-            $aOldArray[$i][3] = 'This folder and subfolders'
-            $aOldArray[$i][4] = 'True'
+            $aOldArray[$i][3] = '此文件夹和子文件夹'
+            $aOldArray[$i][4] = '是'
             $aOldArray[$i][6] = 'True'
         EndIf
         If $aOldArray[$i][3] = '25' Then
