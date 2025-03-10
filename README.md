@@ -1,10 +1,10 @@
-# ACLViewer
-ACL Viewer for Windows
+# ACL查看器
+Windows系统的ACL查看工具
 
-- automatic dark mode / light mode depending on system theme
-- fast ACL/SDDL/ACCESS_MASK parsing
-- displays ACLs for directories and files
+- 根据系统主题自动切换暗色/亮色模式
+- 快速解析ACL/SDDL/ACCESS_MASK
+- 显示目录和文件的访问控制列表
 
-# Screenshot
+# 截图
 
 ![ACLViewer](https://github.com/user-attachments/assets/671993d5-bfb2-4735-a5a6-2a5915b77967)
