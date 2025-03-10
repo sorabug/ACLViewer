@@ -407,7 +407,7 @@ GUICtrlSetState($idListview2, $GUI_HIDE)
 $idListview3 = GUICtrlCreateListView("col1", 100 + $idListviewWidth + 40 + $idListviewWidth + 40, $AccessInfoLabelPosV + 30, $ListviewMeasureWidth + 20, 400, $LVS_NOCOLUMNHEADER, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_CHECKBOXES, $LVS_EX_DOUBLEBUFFER))
 _GUICtrlListView_SetView($idListview3, 3)
 ;GUICtrlSetResizing(-1, $GUI_DOCKALL)
-$IsPropagated = GUICtrlCreateListViewItem(" 传播到子对象", $idListview3)
+$IsPropagated = GUICtrlCreateListViewItem(" 应用到所有子对象", $idListview3)
 
 _GUICtrlListView_SetColumnWidth($idListview3, 0, $LVSCW_AUTOSIZE_USEHEADER)
 GUICtrlSetState($idListview3, $GUI_HIDE)
